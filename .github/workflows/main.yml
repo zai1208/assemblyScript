@@ -3,34 +3,28 @@ on:
     branches:
     - main
 
-- name: Versatile PyInstaller No Remove Tags
-  # You may pin to the exact commit or the version.
-  # uses: unofficial-rev-port/pyinstaller@9978bcff51d1270aba072ca16c549cc6dacaddcc
-  uses: unofficial-rev-port/pyinstaller@v1.2
-  with:
-  # path of your '.py' or '.spec' file. 
-  - This file will be used to create executable.
-  - If .py: Generated spec file will also be uploaded as artifact
-
-    spec: # default is 
-    # path of your requirements.txt file
-    requirements: # optional, default is 
-    # Options to set for pyinstaller command Ex: options: '--onedir, -F'       (seperated by comma and space)
-  - Supported options: Check readme
-
-    options: # optional, default is 
-    # specific python version you want to use
-    python_ver: # optional, default is 3.10
-    # specific python architecture you want to use
-    python_arch: # optional, default is x64
-    # specific pyinstaller version you want to use
-    pyinstaller_ver: # optional, default is 
-    # Path on runner-os, where generated executable files are stored
-    exe_path: # optional, default is ./dist
-    # If passed, uploads executable artifact  with this name. Else, artifact won't be uploaded.
-    upload_exe_with_name: # optional, default is 
-    # If true, perform a clean checkout; if false, skip cleaning. Cleaning will remove all existing local files not in the repository during checkout. If you use utilities like pyinstaller-versionfile, set this to false.
-    clean_checkout: # optional, default is true
-    # Level of compression for archive (between 0 and 9). 0 = No compression, 9 = Max compression.
-    compression_level: # optional, default is 6
-        
+jobs:
+  a_job:
+    steps:
+      - name: PyInstaller Build
+        # You may pin to the exact commit or the version.
+        # uses: eric2788/pyinstaller-build@28997858929e3dcf38a6d05018a2affc5b11383e
+        uses: eric2788/pyinstaller-build@0.1.3
+        with:
+          # the main python file (without .py)
+          main: 
+          # the dist path
+          dist: # optional, default is ./dist
+          # the version of python
+          python_version: # optional, default is 3.9.7
+          # the version of pyinstaller
+          pyinstaller_version: # optional, default is 4.7
+          # the output exe name
+          artifact: # optional, default is main
+          # whether to install requirements.txt before build
+          use-dependencies: # optional, default is true
+          # whether to disppear console terminal
+          no-console: # optional
+          # add the icon mark into your executable, the file path of your ico
+          icon: # optional, default is NONE
+                
