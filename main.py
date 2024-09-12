@@ -5,13 +5,24 @@ import re
 true = 1
 false = 0
 
+commands = {
+    0: "comment",
+    1: "function_usage",
+    2: "function_definition",
+}
+
 def lex(file):
     output = []
     in_comment = false
     in_multiline_comment = false
     may_be_in_comment = false
     may_be_out_of_multiline_comment = false
-    
+
+    for line in file:
+        append = []
+        if line[:1] == "//":
+            append.append(0)
+        output.append(append)
 
 
     return output
