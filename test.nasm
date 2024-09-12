@@ -1,18 +1,5 @@
 ; Hello
-
-;
-; 
-
-;hello
-
-;this
-
-;is
-
-;a
-
-;multiline
-
-;comment
-
-;*/
+; These
+; are
+;multiple
+;comments
