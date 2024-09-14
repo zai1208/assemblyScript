@@ -1,4 +1,5 @@
 # assemblyScript
+__NOTE: THIS IS A TRANSPILER NOT A COMPIELR__  
 This is meant to be a simple language based off NASM assembly   
 I will write this language in python to make things easier for myself  
 This language is meant to be higher level than assembly and lower than c/c++ so that it transpiles directly into NASM assembly  
