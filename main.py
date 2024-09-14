@@ -23,7 +23,20 @@ def lex(file):
         if line[:2] == "//":
             append.append(0)
             append.append(line[2:])
-        output.append(append)
+        elif line[:2] == "/*":
+            in_multiline_comment = true
+        elif line[:-2] == "*/":
+            pass
+        if in_multiline_comment:
+            if line[:2] == "/*":
+                append.append(0)
+                append.append(line[2:])
+            else:
+                append.append(0)
+                append.append(line)
+            
+        if len(append) > 0:
+            output.append(append)
 
 
     return output
@@ -39,8 +52,11 @@ def parse(file):
             
     return output
 if __name__ == "__main__":
-    if sys.argv[1] == "-f":
-        with open(sys.argv[2], "r") as file:
-            if sys.argv[3] == "-o":
-                with open(sys.argv[4], "w") as output:
-                    output.write(parse(lex(file.readlines())))
+    try:
+        if sys.argv[1] == "-i" or sys.argv[1] == "--input":
+            with open(sys.argv[2], "r") as file:
+                if sys.argv[3] == "-o" or sys.argv[3] == "--output":
+                    with open(sys.argv[4], "w") as output:
+                        output.write(parse(lex(file.readlines())))
+    except IndexError:
+        print("usage: " + sys.argv[0] + " [-i <input file>] [-o <output file>]\n\noptions:\n  -i, --input             specifies the input file\n  -o, --output            specifies the output file")
