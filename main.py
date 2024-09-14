@@ -6,9 +6,10 @@ true = 1
 false = 0
 
 commands = {
-    0: "comment",
-    1: "function_usage",
-    2: "function_definition",
+        "comment": 0,
+        "function_usage": 1,
+        "function_definition": 2,
+        "if_statement": 3,
 }
 
 def lex(file):
@@ -21,19 +22,20 @@ def lex(file):
     for line in file:
         append = []
         if line[:2] == "//":
-            append.append(0)
+            append.append(commands["comment"])
             append.append(line[2:])
         elif line[:2] == "/*":
             in_multiline_comment = true
         elif line[:-2] == "*/":
-            pass
+            in_multiline_comment = false
         if in_multiline_comment:
             if line[:2] == "/*":
-                append.append(0)
+                append.append(commands["comment"])
                 append.append(line[2:])
             else:
-                append.append(0)
-                append.append(line)
+                if line[:2] != "*/":
+                    append.append(commands["comment"])
+                    append.append(line)
             
         if len(append) > 0:
             output.append(append)
