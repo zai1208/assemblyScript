@@ -13,3 +13,7 @@ TODO:
 - [ ] Add `bits(<number of bits>)` and `cpu(<cpu type>)` commands
 - [ ] Fix workflow file so that it actually generates binaries and doesn't error out
 - [ ] Add to this TODO list
+
+
+
+Update: didn't know this was a real programming language lol
